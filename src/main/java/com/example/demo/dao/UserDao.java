@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo.dao;
 
 import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,12 +10,10 @@ import java.util.Optional;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserDao extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE u.login = :login")
     Optional<User> findByLogin(@Param("login") String login);
 
     @Query("SELECT u FROM User u WHERE u.login = :login AND u.password = :password")
     Optional<User> findByLoginAndPassword(@Param("login") String login, @Param("password") String password);
-
-
 }
