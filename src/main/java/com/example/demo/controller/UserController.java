@@ -9,7 +9,6 @@ import com.example.demo.model.User;
 import com.example.demo.dao.UserDao;
 import com.example.demo.representation.ProjectRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +28,6 @@ public class UserController {
     @Autowired
     private PictureDao pictureDao;
 
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     User checkIfUserExists(String login, String password) {
         return userDao.findByLoginAndPassword(login, password).orElseThrow(
                 () -> new ResourceNotFoundException("User with such username and password doesn't exist: " + login));
