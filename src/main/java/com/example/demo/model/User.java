@@ -2,9 +2,12 @@ package com.example.demo.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Collection;
 
+@ToString
 @SuppressWarnings("PMD")
 @Entity
 @Table(name = "users")
@@ -14,8 +17,8 @@ public class User {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
-    private long user_id;
+    @Column(name = "userid")
+    private long userid;
 
     @Getter
     @Setter
@@ -34,23 +37,30 @@ public class User {
 
     @Getter
     @Setter
+    @Lob
     @Column(name = "description")
     private String description;
 
+    @Getter
+    @Setter
+    @Lob
+    @Column(name = "photo")
+    private String photo;
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "USER_ID", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userid", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<Project> projects;
 
     public User() {
     }
 
-    public User(String login, String password, String fullname, String description) {
+    public User(String login, String password, String fullname, String description, String photo) {
         super();
         this.login = login;
         this.password = password;
         this.fullname = fullname;
         this.description = description;
+        this.photo = photo;
     }
 }

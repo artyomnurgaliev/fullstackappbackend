@@ -15,24 +15,25 @@ public class Picture {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "picture_id")
+    @Column(name = "pictureid")
     private long id;
 
     @JsonIgnore
     @Getter
     @Setter
     @ManyToOne(optional = false)
-    @JoinColumn(name = "PROJECT_ID")
-    private Project PROJECT_ID;
+    @JoinColumn(name = "projectid")
+    private Project projectid;
 
     @Getter
     @Setter
-    @Column(name = "image")
-    byte[] image;
+    @Lob
+    @Column(name = "src")
+    private String src;
 
     public Picture() {}
 
-    public Picture(byte[] image){
-        this.image = image;
+    public Picture(String src){
+        this.src = src;
     }
 }

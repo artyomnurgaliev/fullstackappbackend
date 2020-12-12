@@ -12,14 +12,14 @@ import java.util.Collection;
 @SuppressWarnings("PMD")
 @Entity
 @Table(name = "projects")
-@ToString(exclude = {"USER_ID"})
+@ToString(exclude = {"userid"})
 public class Project {
 
     @Getter
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "project_id")
+    @Column(name = "projectid")
     private long id;
 
     @Getter
@@ -34,24 +34,20 @@ public class Project {
 
     @Getter
     @Setter
+    @Lob
     @Column(name = "description")
     private String description;
-
-    //@Getter
-    //@Setter
-    //@OneToMany(mappedBy = "picture", fetch = FetchType.EAGER)
-    //private Collection<Picture> pictures;
 
     @JsonIgnore
     @Getter
     @Setter
     @ManyToOne(optional = false)
-    @JoinColumn(name = "USER_ID")
-    private User USER_ID;
+    @JoinColumn(name = "userid")
+    private User userid;
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "PROJECT_ID", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "projectid", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<Picture> pictures;
 
     public Project() {}
