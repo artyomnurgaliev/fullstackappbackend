@@ -7,6 +7,7 @@ import com.example.demo.model.Picture;
 import com.example.demo.model.Project;
 import com.example.demo.model.User;
 import com.example.demo.dao.UserDao;
+import com.example.demo.representation.PictureRepresentation;
 import com.example.demo.representation.ProjectRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://achievehub.herokuapp.com")
 @RestController
 @RequestMapping("/api/v1/")
 public class UserController {
@@ -102,7 +103,7 @@ public class UserController {
         project.setDescription(projectRepresentation.getDescription());
         project.setUserid(updatedUser);
         projectDao.save(project);
-        for (var picture : projectRepresentation.getPictures()) {
+        for (PictureRepresentation picture : projectRepresentation.getPictures()) {
             Picture pic = new Picture(picture.getSrc());
             pic.setProjectid(project);
             pictureDao.save(pic);
