@@ -1,3 +1,5 @@
+package com.example.demo.controller;
+
 import com.example.demo.DemoApplication;
 import com.example.demo.dao.ProjectDao;
 import com.example.demo.dao.UserDao;
@@ -19,7 +21,6 @@ import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK,

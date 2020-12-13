@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-class ProjectDaoTest {
+class ProjectDaoUnitTest {
     @BeforeEach
     void setup() {
         User user = new User("artyom", "", "", "", "");

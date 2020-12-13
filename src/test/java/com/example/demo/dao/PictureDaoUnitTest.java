@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-class PictureDaoTest {
+class PictureDaoUnitTest {
     @Autowired
     UserDao userDao;
 

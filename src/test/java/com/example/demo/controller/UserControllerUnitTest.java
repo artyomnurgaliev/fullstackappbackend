@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(SpringRunner.class)
-public class UserControllerTest {
+public class UserControllerUnitTest {
     @TestConfiguration
     static class UserControllerTestContextConfiguration {
 
