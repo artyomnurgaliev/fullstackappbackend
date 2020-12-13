@@ -1,0 +1,28 @@
+node {
+    stage 'Clone the project'
+    git 'https://github.com/artyomnurgaliev/fullstackappbackend'
+
+
+        stage("Compilation and Analysis") {
+            parallel 'Compilation': {
+                sh "./mvnw clean install -DskipTests"
+            }
+        }
+
+        stage("Tests and Deployment") {
+            parallel 'tests': {
+                stage("Runing tests") {
+                    try {
+                        sh "./mvnw test"
+                    } catch(err) {
+                        step([$class: 'JUnitResultArchiver', testResults:
+                          '**/target/surefire-reports/TEST-*UnitTest.xml'])
+                        throw err
+                    }
+                   step([$class: 'JUnitResultArchiver', testResults:
+                     '**/target/surefire-reports/TEST-*UnitTest.xml'])
+                }
+            }
+        }
+
+}
