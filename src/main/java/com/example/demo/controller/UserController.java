@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin(origins = "https://achievehub.herokuapp.com")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class UserController {
@@ -64,10 +65,7 @@ public class UserController {
     @PutMapping("/users/update")
     public ResponseEntity<User> updateUser(@RequestBody User user, @RequestParam String login, @RequestParam String password) {
         User updatedUser = checkIfUserExists(login, password);
-        updatedUser.setFullname(user.getFullname());
-        updatedUser.setDescription(user.getDescription());
-        updatedUser.setPhoto(user.getPhoto());
-        userDao.save(updatedUser);
+        userDao.asyncUpdate(updatedUser.getUserid(), user.getFullname(), user.getDescription(), user.getPhoto());
         return ResponseEntity.ok(user);
     }
 
