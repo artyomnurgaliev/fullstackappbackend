@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -12,6 +14,7 @@ import java.util.Collection;
 @SuppressWarnings("PMD")
 @Entity
 @Table(name = "projects")
+@Audited
 @ToString(exclude = {"userid"})
 public class Project {
 
@@ -47,6 +50,7 @@ public class Project {
 
     @Getter
     @Setter
+    @NotAudited
     @OneToMany(mappedBy = "projectid", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<Picture> pictures;
 

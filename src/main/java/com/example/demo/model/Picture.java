@@ -3,11 +3,13 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
 @SuppressWarnings("PMD")
 @Entity
+@Audited
 @Table(name = "pictures")
 public class Picture {
 

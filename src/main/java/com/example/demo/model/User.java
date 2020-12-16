@@ -3,6 +3,8 @@ package com.example.demo.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -10,9 +12,9 @@ import java.util.Collection;
 @ToString
 @SuppressWarnings("PMD")
 @Entity
+@Audited
 @Table(name = "users")
 public class User {
-
     @Getter
     @Setter
     @Id
@@ -49,6 +51,7 @@ public class User {
 
     @Getter
     @Setter
+    @NotAudited
     @OneToMany(mappedBy = "userid", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<Project> projects;
 

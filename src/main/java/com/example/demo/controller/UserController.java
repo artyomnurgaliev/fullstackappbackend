@@ -9,17 +9,22 @@ import com.example.demo.model.User;
 import com.example.demo.dao.UserDao;
 import com.example.demo.representation.PictureRepresentation;
 import com.example.demo.representation.ProjectRepresentation;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "https://achievehub.herokuapp.com")
-//@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "https://achievehub.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class UserController {
+    @Getter
+    @Setter
+    User currentUser = null;
 
     @Autowired
     private UserDao userDao;
@@ -43,6 +48,7 @@ public class UserController {
     @GetMapping("/users/login")
     public ResponseEntity<User> login(@RequestParam String login, @RequestParam String password) {
         User user = checkIfUserExists(login, password);
+        currentUser = user;
         return ResponseEntity.ok(user);
     }
 
@@ -52,6 +58,7 @@ public class UserController {
             throw new ResourceNotFoundException("User with such username already exist: " + login);
         } else {
             userDao.save(user);
+            currentUser = user;
             return ResponseEntity.ok(user);
         }
     }
@@ -59,6 +66,7 @@ public class UserController {
     @GetMapping("/users/get_user")
     public ResponseEntity<User> getUser(@RequestParam String login) {
         User user = userDao.findByLogin(login).orElseThrow(() -> new ResourceNotFoundException("User with such username and password doesn't exist :" + login + " "));
+        currentUser = null;
         return ResponseEntity.ok(user);
     }
 
@@ -150,6 +158,7 @@ public class UserController {
 
     @GetMapping("/users/get_project")
     public ResponseEntity<List<Project>> getProjects(@RequestParam String name) {
+        currentUser = null;
         return ResponseEntity.ok(projectDao.findAllByNameStartsWith(name));
     }
 
