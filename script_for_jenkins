@@ -22,6 +22,10 @@ node {
                    step([$class: 'JUnitResultArchiver', testResults:
                      '**/target/surefire-reports/TEST-*UnitTest.xml'])
                 }
+
+                stage("Staging") {
+                    sh "heroku deploy:jar target/demo-0.0.1-SNAPSHOT.jar --app achievehubbackendv1"
+                }
             }
         }
 
