@@ -1,3 +1,8 @@
-# fullstackappbackend
+Это пример full stack приложения. 
+Ссылка на сайт: https://achievementhub.herokuapp.com/
 
-Для этого проекта есть docker-image: https://hub.docker.com/r/ficruss/spring_app/tags?page=1&ordering=last_updated
+Сайт - хранилище достижений. Является упрощенным аналогом github-а, где у каждого пользователя есть возможность добавить свои проекты в текстовом формате, добавить к описанию изображения, редактировать проекты и свою личную страницу, а также смотреть проекты и страницы других пользователей.
+
+Данная часть - бэкенд, написанный на java с помощью spring boot
+
+https://github.com/artyomnurgaliev/fullstackapp - frontend, демонстрирует использование технологии react.
